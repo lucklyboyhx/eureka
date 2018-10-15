@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: hello-client
+
+server:
+  port: 8073
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://discovery1:8761/eureka,http://discovery2:8762/eureka
+  instance: 
+    instanceId: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+
+

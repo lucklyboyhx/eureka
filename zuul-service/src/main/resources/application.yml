@@ -1,0 +1,26 @@
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+  routes:
+    hello-server:
+      path: /server/**
+      url: http://localhost:8071
+#      serviceId: HELLO-SERVER
+    hello-client:
+      path: /client/**
+      serviceId: HELLO-CLIENT
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery1:8761/eureka,http://discovery2:8762/eureka
+    registerWithEureka: false
+  instance:
+    hostname: localhost
+
+server:
+  port: 8079
+
+spring:
+  application:
+    name: zuul-service
