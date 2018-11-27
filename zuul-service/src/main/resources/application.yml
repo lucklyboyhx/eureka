@@ -1,11 +1,31 @@
-zuul:
-  #Service will be mapped under the /api URI
+#zuul:
+#  prefix: /api
+#  routes:
+#    hello-server:
+#      path: /server/**
+#      url: http://localhost:8071
+#    hello-client:
+#      path: /client/**
+#      serviceId: HELLO-CLIENT
+
+#zuul:
+#  routes:
+#    localhost:
+#      path:/zuul/**
+#      url:http://localhost:8079
+  
+---
+zuul:    
+  host:
+    socket-timeout-millis: 150000
+    connect-timeout-millis: 150000
+    max-total-connections: 200
+    max-per-route-connections: 100
   prefix: /api
   routes:
     hello-server:
       path: /server/**
       url: http://localhost:8071
-#      serviceId: HELLO-SERVER
     hello-client:
       path: /client/**
       serviceId: HELLO-CLIENT
@@ -24,3 +44,6 @@ server:
 spring:
   application:
     name: zuul-service
+
+routeRefresh:
+  time: 2
