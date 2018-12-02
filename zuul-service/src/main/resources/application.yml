@@ -46,4 +46,40 @@ spring:
     name: zuul-service
 
 routeRefresh:
-  time: 2
+  time: 1
+  
+filter:
+  groovy:
+    path: src/main/resources/META-INF/filter/
+    refreshTime: 10
+    
+    
+---
+## 数据源配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://csj.nhsoft.cn:3306/zuul?useUnicode=true&characterEncoding=GBK&useSSL=false
+    username: root
+    password: cSfwLEMPaZUCrGNTkIH5
+
+jdbc:
+  maxPoolSize: 600
+  minPoolSize: 10
+  initialPoolSize: 10
+  maxWait: 60000
+  timeBetweenEvictionRunsMillis: 60000
+  minEvictableIdleTimeMillis: 300000
+  validationQuery: SELECT 'x'
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  filters: stat,wall,slf4j
+
+
+
+## Mybatis 配置
+mybatis:
+  typeAliasesPackage: io.spring2go.zuul.route.model
+  mapperLocations: classpath:mapper/*.xml
+  configuration.cache-enabled: true

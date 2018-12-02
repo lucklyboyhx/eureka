@@ -1,13 +1,15 @@
 package io.spring2go.zuul.route.service;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import io.spring2go.zuul.dao.ZuulRouteDao;
 import io.spring2go.zuul.route.model.ZuulRouteVo;
 
 
@@ -18,6 +20,8 @@ public class ZuulRouteVoService {
 
     public static LinkedHashMap<String, ZuulRouteVo> ZUUL_ROUTE_VO_MAP = new LinkedHashMap<String, ZuulRouteVo>();
 
+    @Resource
+    private ZuulRouteDao zuulRouteDao;
     
     public void initZuulRouteVoMap(){
         LinkedHashMap<String, ZuulRouteVo> tempMap = queryAll();
@@ -39,12 +43,12 @@ public class ZuulRouteVoService {
     public LinkedHashMap<String, ZuulRouteVo> queryAll(){
         LinkedHashMap<String, ZuulRouteVo> zuulRouteVoMap = new LinkedHashMap<String, ZuulRouteVo>();
         try {
-            List<ZuulRouteVo> zuulRouteVoList = new ArrayList<ZuulRouteVo>();
-            ZuulRouteVo zuulRouteVoOne = new ZuulRouteVo();
-            zuulRouteVoOne.setId("clienttest");
-            zuulRouteVoOne.setPath("/api/clienttest/**");
-            zuulRouteVoOne.setServiceId("HELLO-CLIENT");
-            zuulRouteVoList.add(zuulRouteVoOne);
+            List<ZuulRouteVo> zuulRouteVoList = zuulRouteDao.list();
+//            ZuulRouteVo zuulRouteVoOne = new ZuulRouteVo();
+//            zuulRouteVoOne.setId("clienttest");
+//            zuulRouteVoOne.setPath("/api/clienttest/**");
+//            zuulRouteVoOne.setServiceId("HELLO-CLIENT");
+//            zuulRouteVoList.add(zuulRouteVoOne);
             
 //            ZuulRouteVo zuulRouteVoTwo = new ZuulRouteVo();
 //            zuulRouteVoTwo.setId("localhost");
@@ -52,11 +56,11 @@ public class ZuulRouteVoService {
 //            zuulRouteVoTwo.setUrl("http://localhost:8079");
 //            zuulRouteVoList.add(zuulRouteVoTwo);
             
-            ZuulRouteVo zuulRouteVoThr = new ZuulRouteVo();
-            zuulRouteVoThr.setId("servertest");
-            zuulRouteVoThr.setPath("/api/servertest/**");
-            zuulRouteVoThr.setUrl("http://localhost:8071");
-            zuulRouteVoList.add(zuulRouteVoThr);
+//            ZuulRouteVo zuulRouteVoThr = new ZuulRouteVo();
+//            zuulRouteVoThr.setId("servertest");
+//            zuulRouteVoThr.setPath("/api/servertest/**");
+//            zuulRouteVoThr.setUrl("http://localhost:8071");
+//            zuulRouteVoList.add(zuulRouteVoThr);
             
             zuulRouteVoList.stream().forEach(zuulRouteVo -> {
                 String path = zuulRouteVo.getPath();

@@ -7,6 +7,7 @@ import org.springframework.web.util.UrlPathHelper;
 
 import com.netflix.zuul.ZuulFilter;
 
+import io.spring2go.zuul.route.filter.RateLimitZuulFilter;
 import io.spring2go.zuul.route.filter.RouteTimesFilter;
 import io.spring2go.zuul.route.filter.ZuulAutoFilter;
 
@@ -23,4 +24,8 @@ public class FilterConfig {
         return new RouteTimesFilter(routeLocator,new UrlPathHelper());
     }
 
+    @Bean
+    public RateLimitZuulFilter rateLimitZuulFilter(){
+        return new RateLimitZuulFilter();
+    }
 }

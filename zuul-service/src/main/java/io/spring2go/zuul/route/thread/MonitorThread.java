@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import io.spring2go.zuul.route.service.RateLimitService;
 import io.spring2go.zuul.route.service.RefreshRouteService;
 
 
@@ -15,6 +16,9 @@ public class MonitorThread extends Thread{
 
     @Autowired
     private RefreshRouteService refreshRouteService;
+    
+    @Autowired
+    private RateLimitService rateLimitService;
 
     @Override
     public void run(){
@@ -33,6 +37,8 @@ public class MonitorThread extends Thread{
 
                 // ensure that the last route refresh is completed
                 refreshRouteService.refreshRoute();
+                
+                rateLimitService.setRateLimitMap();
 
             }catch (Exception e){
                 e.printStackTrace();

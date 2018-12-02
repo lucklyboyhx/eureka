@@ -46,7 +46,7 @@ public class ZuulAutoFilter extends ZuulFilter{
             rc.setSendZuulResponse(false);
             log.error("service does not exist：" + uri) ;
         }else {
-            log.error("请求路由：" + uri) ;
+            log.info("请求路由：" + uri) ;
         }
         return null;
     }
