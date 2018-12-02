@@ -1,9 +1,5 @@
-实验三、Spring Cloud Zuul/Eureka/Ribbon集成实验
-======
 
-### 实验步骤
-
-#### 1. 导入项目到IDE
+#### 1. 多个服务
 
 * Eureka服务器[eureka-service](eureka-service)
 * Hello微服务服务端[hello-server](hello-server)
@@ -133,3 +129,9 @@ Run As -> Run Configurations -> Spring Boot App
 http://discovery1:8761/
 或者
 http://discovery2:8762/
+
+测试地址：
+获取路由表：http://127.0.0.1:8079/watchNowRoute
+server测试地址：http://127.0.0.1:8079/api/servertest/rest/hello/server
+client测试地址：http://127.0.0.1:8079/api/client/rest/hello/client
+swegger地址：http://localhost:8079/swagger-ui.html
